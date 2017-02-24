@@ -8,12 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         navigationItem.title = "Home!"
 
@@ -94,9 +95,19 @@ class ViewController: UIViewController {
             return imageView
         }()
         
+        let textField: UITextField = {
+            let tField = UITextField(frame: CGRect(x: 20.0, y: 30.0, width: 100.0, height: 30.0))
+            tField.textAlignment = NSTextAlignment.center
+            tField.textColor = UIColor.blue
+            tField.borderStyle = UITextBorderStyle.line
+            tField.delegate = self
+            return tField
+        }()
+
+        
         // StackView //
         
-        let stackView = UIStackView(arrangedSubviews: [label2,catView, label])
+        let stackView = UIStackView(arrangedSubviews: [label2,catView,textField, label])
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.alignment = .fill
@@ -127,6 +138,7 @@ class ViewController: UIViewController {
         
     }
     
-    
+
+   
 }
 

@@ -15,12 +15,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.hideKeyboardWhenTappedAround()      
+        // Extension to hide keyboard
+        hideKeyboardWhenTappedAround()
         
-        navigationItem.title = "Home!"
+        navigationItem.title = "Home"
 
         navigationController?.navigationBar.barTintColor = .red
         navigationController?.navigationBar.isTranslucent = false
+        
+        
         
         let scrollView = UIScrollView(frame: view.bounds)
         scrollView.backgroundColor = UIColor.black
@@ -139,6 +142,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // Hide keyboard when the return key is pressed
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 
    
 }

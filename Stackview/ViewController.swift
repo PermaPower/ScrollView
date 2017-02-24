@@ -15,6 +15,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Home"
+
+        navigationController?.navigationBar.barTintColor = .red
+        navigationController?.navigationBar.isTranslucent = false
+        
         let scrollView = UIScrollView(frame: view.bounds)
         scrollView.backgroundColor = UIColor.black
         scrollView.contentSize = view.bounds.size
@@ -23,11 +28,26 @@ class ViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(scrollView)
+        
+        let horizontalConstraint = NSLayoutConstraint(item: view,
+                                                 attribute: NSLayoutAttribute.centerX,
+                                                 relatedBy: NSLayoutRelation.equal,
+                                                 toItem: view,
+                                                 attribute: NSLayoutAttribute.centerX,
+                                                 multiplier: 1, constant: 0)
+    
 
+        let verticalConstraint = NSLayoutConstraint(item: view,
+                                                 attribute: NSLayoutAttribute.centerY,
+                                                 relatedBy: NSLayoutRelation.equal,
+                                                 toItem: scrollView,
+                                                 attribute: NSLayoutAttribute.centerY,
+                                                 multiplier: 1, constant: 0)
+        
+        view.addConstraint(verticalConstraint)
+        view.addConstraint(horizontalConstraint)
 
-        let horizontalConstraint = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
-        let verticalConstraint = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
+     
         
         let scrollViews = ["scrollView": scrollView]
         let swidthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: scrollViews)
@@ -36,7 +56,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate(swidthConstraints)
         NSLayoutConstraint.activate(sheightConstraints)
         
-        scrollView.backgroundColor = .red
+        scrollView.backgroundColor = .white
         
         
         // View 1  //
@@ -103,10 +123,7 @@ class ViewController: UIViewController {
         
         // scroll size should equal the total of the views height //
         scrollView.contentSize.height = 1000
-        
-//        scrollView.isScrollEnabled = true
-//        scrollView.isDirectionalLockEnabled = true
-        
+
         
     }
     
